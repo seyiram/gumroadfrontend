@@ -1,0 +1,112 @@
+.signup-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f4f0;
+}
+
+.signup-form-container {
+  width: 55%;
+  overflow-y: auto;
+}
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signup-image-bg {
+  overflow: auto;
+  padding: 1.5rem;
+  gap: 1rem;
+  grid-auto-rows: max-content;
+  background: url("../../assets/images/background-29d.webp") no-repeat center
+    top;
+  background-size: cover;
+  display: none;
+}
+
+.signup-form-container h1 {
+  grid-column: 1/-1;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 400;
+  margin-top: 4rem;
+  text-align: justify;
+}
+
+.signup-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem 0.75rem;
+  padding-top: 4rem;
+  margin: 0 1.5rem;
+}
+
+.actions a {
+  color: #000;
+}
+
+.header-main img {
+  width: calc(1em / 0.14);
+}
+
+.form-submit-btn {
+  margin: 0 auto;
+  display: block;
+  width: calc(100% - 1.5rem);
+  padding: 0.75rem 1rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease,
+    background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-submit-btn:hover {
+  color: #000;
+  background-color: #ff90e8;
+  box-shadow: 0.25rem 0.25rem 0rem;
+  transform: translate(-0.25rem, -0.25rem);
+}
+
+/* Media Queries */
+
+@media (min-width: 1024px) {
+  .signup-image-bg {
+    display: grid;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .signup-image-bg {
+    width: 50vw; 
+  }
+}
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+  }
+
+  .signup-form-container,
+  .signup-image-bg {
+    width: 100%;
+  }
+  .signup-form-container h1 {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .signup-image-bg {
+    display: block;
+  }
+}
