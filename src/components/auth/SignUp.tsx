@@ -7,14 +7,12 @@ import GumroadLogo from "../../assets/images/gumroad.svg";
 interface UserCredentials {
   username: string;
   password: string;
-  age?: number;
 }
 
 const SignUp: React.FC = () => {
   const [credentials, setCredentials] = useState<UserCredentials>({
     username: "",
     password: "",
-    age: 0,
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,3 +62,4 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
+  
