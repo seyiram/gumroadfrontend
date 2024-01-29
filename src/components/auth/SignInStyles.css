@@ -26,15 +26,6 @@
   display: none;
 }
 
-.signup-form-container h1 {
-  grid-column: 1/-1;
-  font-size: 2.5rem;
-  line-height: 1.2;
-  font-weight: 400;
-  margin-top: 4rem;
-  text-align: justify;
-}
-
 .signup-header {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -48,8 +39,29 @@
   color: #000;
 }
 
+.signup-form {
+  margin-top: 4rem;
+}
+
 .header-main img {
   width: calc(1em / 0.14);
+}
+
+.password-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.password-label-row a {
+  color: #000;
+}
+
+.forgot-password-link {
+  margin-left: auto;
 }
 
 .form-submit-btn {
@@ -71,14 +83,6 @@
   background-color: #ff90e8;
   box-shadow: 0.25rem 0.25rem 0rem;
   transform: translate(-0.25rem, -0.25rem);
-}
-
-.terms-of-use {
-  margin: 1.5rem 1rem;
-}
-
-.terms-of-use u {
-  cursor: pointer;
 }
 
 /* Media Queries */
@@ -108,9 +112,6 @@
   .signup-form-container,
   .signup-image-bg {
     width: 100%;
-  }
-  .signup-form-container h1 {
-    text-align: left;
   }
 }
 
