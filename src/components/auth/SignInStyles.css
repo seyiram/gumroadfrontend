@@ -16,6 +16,7 @@
 }
 
 .signup-image-bg {
+  display: hidden;
   overflow: auto;
   padding: 1.5rem;
   gap: 1rem;
@@ -90,7 +91,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .signup-container {
     flex-direction: column;
   }
@@ -101,8 +102,3 @@
   }
 }
 
-@media (min-width: 768px) {
-  .signup-image-bg {
-    display: block;
-  }
-}

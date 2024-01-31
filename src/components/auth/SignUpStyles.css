@@ -7,8 +7,8 @@
 
 .signup-form-container {
   width: 55%;
-  overflow-y: auto;
 }
+
 .header-main {
   display: flex;
   align-items: center;
@@ -16,14 +16,13 @@
 }
 
 .signup-image-bg {
-  overflow: auto;
+  display: none; /* Hidden by default for all viewport widths */
   padding: 1.5rem;
   gap: 1rem;
   grid-auto-rows: max-content;
   background: url("../../assets/images/background-29d.webp") no-repeat center
     top;
   background-size: cover;
-  display: none;
 }
 
 .signup-form-container h1 {
@@ -73,7 +72,7 @@
 
 @media (min-width: 1024px) {
   .signup-image-bg {
-    display: grid;
+    display: grid; /* Show only for viewport width 1024px and above */
     position: fixed;
     top: 0;
     right: 0;
@@ -97,13 +96,11 @@
   .signup-image-bg {
     width: 100%;
   }
+
+  .signup-form-container {
+    overflow-y: auto;
+  }
   .signup-form-container h1 {
     text-align: left;
-  }
-}
-
-@media (min-width: 768px) {
-  .signup-image-bg {
-    display: block;
   }
 }
