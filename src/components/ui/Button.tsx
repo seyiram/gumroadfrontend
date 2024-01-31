@@ -1,5 +1,5 @@
-// Button.tsx
-import React from 'react';
+import React from "react";
+import "./ButtonStyles.css";
 
 interface ButtonProps {
   children?: React.ReactNode;
@@ -7,7 +7,11 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className = '' }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  className = "submit-btn",
+}) => {
   return (
     <button onClick={onClick} className={className}>
       {children}
