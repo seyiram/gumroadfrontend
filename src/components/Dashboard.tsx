@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import "./DashboardStyles.css";
+import { Helmet } from "react-helmet";
+import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      <Sidebar />
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
