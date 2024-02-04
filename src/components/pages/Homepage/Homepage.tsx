@@ -1,4 +1,3 @@
-import React from "react";
 import "./HomepageStyles.css";
 import { Helmet } from "react-helmet";
 import ProductImage from "../../../assets/images/20f9d3e0a6869c1b28a1.webp";

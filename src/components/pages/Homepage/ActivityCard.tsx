@@ -1,4 +1,3 @@
-import React from "react";
 import "./ActivityCardStyles.css";
 
 const ActivityCard = () => {
@@ -8,7 +7,7 @@ const ActivityCard = () => {
       <div className="activity-content">
         <div className="activity-description">
           Followers and sales will show up here as they come in. For now,&nbsp;
-           <a href="/products" className="activity-link">
+          <a href="/create-product" className="activity-link">
             create a product
           </a>
           &nbsp;or&nbsp;
