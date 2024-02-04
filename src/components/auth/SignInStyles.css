@@ -3,13 +3,14 @@
   height: 100vh;
   background-color: #f4f4f0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .signup-form-container {
   width: 55%;
   overflow-y: auto;
 }
-.header-main {
+.signup-container .header-main {
   display: flex;
   align-items: center;
   justify-content: space-between;

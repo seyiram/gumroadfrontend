@@ -8,8 +8,8 @@
   font-size: 1rem;
   border-radius: 0.25rem;
   border: none;
-  transition: box-shadow 0.3s ease, transform 0.3s ease,
-    background-color 0.3s ease, color 0.3s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease,
+    background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
 }
 
