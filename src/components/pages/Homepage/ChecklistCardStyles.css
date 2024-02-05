@@ -1,7 +1,5 @@
 .checklist-card {
-  width: 70rem;
-  max-width: 100%;
-  margin-left: 3.18rem;
+  margin: 2.5rem 1rem 1rem 1rem;
 }
 
 .checklist-title {
@@ -19,8 +17,6 @@
   gap: 0;
   background-color: #fff;
 }
-
-
 
 .checklist-item {
   display: flex;
@@ -51,20 +47,20 @@
   text-decoration: none;
 }
 
-
 @media (max-width: 1024px) {
-    .checklist-card {
-      margin: 2rem 0;
-    }
-    .checklist-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .checklist-item:nth-child(2n + 1) {
-      border-right: none;
-    }
+  .checklist-card {
+    width: calc(100% - 2rem);
+    margin: 3rem 1rem;
   }
-  
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checklist-item:nth-child(2n + 1) {
+    border-right: none;
+  }
+}
+
 .completed .checklist-item-text {
   text-decoration: none;
 }

@@ -1,13 +1,9 @@
 /* Sidebar icons */
 
-.icon {
-  margin-right: 1rem;
-}
-
 .icon::before {
   content: "\a0";
   display: inline-block;
-  background: currentColor;
+  background: #fff;
   min-height: 1rem;
   width: 1.5rem;
   -webkit-mask-position: center;
@@ -17,10 +13,6 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   flex-shrink: 0;
-}
-
-.icon::after {
-  content: "\a0";
 }
 
 .icon-shop-window-fill {
@@ -83,27 +75,33 @@
   mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTguOTY4IDIuNDZBOS42NjkgOS42NjkgMCAwIDAgNS4yNSA0LjY0OWMtLjMzMy4zMS0uNDM1LjgxOC0uMjE5IDEuMjE5LjgwMSAxLjQ4LS4wMzcgMy4wNjUtMS44NDMgMy4xNTYtLjQ0My4wMjMtLjgzNC4zNS0uOTM4Ljc4QTguNzEzIDguNzEzIDAgMCAwIDIgMTEuOTkzYzAgLjY4Ny4wNzQgMS40NjQuMjIgMi4xNTYuMDkuNDMyLjQ2NS43NDMuOTA1Ljc4MiAxLjgxOC4xNTcgMi43MTggMS41NDMgMS45MDYgMy4zMTItLjE4LjM5My0uMDk4Ljg2My4yMiAxLjE1NiAxLjA2MS45ODMgMi4yODEgMS42NzUgMy43MTggMi4xMjUuNDEuMTI5Ljg3My0uMDI2IDEuMTI1LS4zNzUgMS4xMTItMS41MzggMi43MjUtMS41NDQgMy43ODEgMCAuMjUuMzY0LjcwNS41MzkgMS4xMjUuNDA2YTEwLjA3MiAxMC4wNzIgMCAwIDAgMy43NS0yLjE1NmMuMzMtLjMuNDE3LS43ODcuMjItMS4xODctLjgzMy0xLjY4LjEyNC0zLjIyMSAxLjg0Mi0zLjI1LjQ1Ni0uMDA4Ljg2Mi0uMzA4Ljk3LS43NS4xNzItLjcxNy4yMTgtMS4zNDIuMjE4LTIuMjIgMC0uNzUzLS4wODktMS40OTYtLjI1LTIuMjE4YS45OTQuOTk0IDAgMCAwLS45NjktLjc4MWMtMS42OS0uMDAzLTIuNjM5LTEuNjY1LTEuODEyLTMuMTI1YS45NzkuOTc5IDAgMCAwLS4xODgtMS4yMiAxMC4xNTMgMTAuMTUzIDAgMCAwLTMuODEyLTIuMTg2Ljk4Ni45ODYgMCAwIDAtMS4xMjUuNDA2Yy0uOTY2IDEuNS0yLjc3IDEuNTI3LTMuNzE5LjAzLS4yNDMtLjM4Mi0uNzI0LS41NzQtMS4xNTYtLjQzNlpNMTIgNy45OTNhNCA0IDAgMSAxIDAgOCA0IDQgMCAwIDEgMC04WiIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==);
 }
 
-.icon-empty {
-  background-color: rgba(0, 0, 0, 0);
-  width: 1rem;
-  height: 1rem;
+.sidebar {
+  background-color: #000;
+  width: 14.813rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.8rem 0;
 }
 
 .sidebar .header {
   padding: 4rem 1.5rem;
 }
 
+.header .hamburger {
+  display: none;
+}
+
 .header .logo-full {
   display: flex;
   align-items: center;
   justify-items: center;
-}
-
-.sidebar {
-  background-color: #000;
-  width: 14.813rem;
-  min-height: 100vh;
-  overflow-y: auto;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -142,10 +140,91 @@
   color: #ff90e8;
 }
 
+.sidebar-nav span {
+  margin-right: 1rem;
+}
+
 .user-avatar {
   border-radius: 10rem;
   width: 1.5em;
   aspect-ratio: 1;
   flex-shrink: 0;
   border: solid 0.0625rem rgb(var(--color) / var(--border-alpha));
+}
+
+.logo-g {
+  display: block;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODEiIGhlaWdodD0iODEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTQzLjc0MSA4MC4xODZjMjAuNDU1IDAgMzcuMDM3LTE2LjU4MiAzNy4wMzctMzcuMDM3UzY0LjE5NiA2LjExMiA0My43NDEgNi4xMTIgNi43MDQgMjIuNjk0IDYuNzA0IDQzLjE0OXMxNi41ODIgMzcuMDM3IDM3LjAzNyAzNy4wMzdaIiBmaWxsPSIjMDAwIi8+PHBhdGggZD0iTTM4LjYwNSA3Ni40MzNjMjAuODkyIDAgMzcuODI4LTE2LjkzNiAzNy44MjgtMzcuODI4IDAtMjAuODktMTYuOTM2LTM3LjgyNy0zNy44MjgtMzcuODI3QzE3LjcxNS43NzguNzc5IDE3LjcxNC43NzkgMzguNjA2YzAgMjAuODkgMTYuOTM2IDM3LjgyNyAzNy44MjggMzcuODI3WiIgZmlsbD0iI0ZGOTBFOCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuNTU3Ii8+PHBhdGggZD0iTTM1LjM5MiA1Ny4yNzJjLTEwLjg0OSAwLTE3LjIzLTguNzAxLTE3LjIzLTE5LjUyNiAwLTExLjI0OSA3LjAyLTIwLjM3NSAyMC40MjEtMjAuMzc1IDEzLjgyOCAwIDE4LjUwOCA5LjMzOSAxOC43MiAxNC42NDVoLTkuOTk4Yy0uMjEzLTIuOTcyLTIuNzY1LTcuNDI5LTguOTM1LTcuNDI5LTYuNTk0IDAtMTAuODQ5IDUuNzMtMTAuODQ5IDEyLjczNSAwIDcuMDA0IDQuMjU1IDEyLjczNCAxMC44NSAxMi43MzQgNS45NTYgMCA4LjUwOS00LjY3IDkuNTcyLTkuMzM4SDM4LjM3di0zLjgyaDIwLjA4N3YxOS41MjVoLTguODEydi0xMi4zMWMtLjYzOCA0LjQ1OC0zLjQwNCAxMy4xNi0xNC4yNTMgMTMuMTZaIiBmaWxsPSIjMDAwIi8+PC9zdmc+);
+  background-size: contain;
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar.open {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 20;
+  }
+
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    gap: 0.75rem;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 30;
+    background: #000;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .mobile-header h2 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .hamburger-icon,
+  .close-icon {
+    background-color: transparent;
+    color: #fff;
+  }
+
+  .sidebar-nav {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .sidebar-content {
+    /* Styles for the sidebar content */
+  }
 }

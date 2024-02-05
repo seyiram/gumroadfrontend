@@ -1,12 +1,11 @@
 .activity-container {
-  margin: 2rem 3.18rem;
-  max-width: 100%;
-  width: 70rem;
+  margin: 2.5rem 1rem 1rem 1rem;
 }
 
 @media (max-width: 1024px) {
   .activity-container {
-    margin: 0;
+    width: calc(100% - 2rem);
+    margin: 3rem 1rem;
   }
 }
 
