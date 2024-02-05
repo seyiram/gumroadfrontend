@@ -14,6 +14,10 @@ const Sidebar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       <header className="mobile-header">
@@ -38,7 +42,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isMenuOpen ? "open" : ""}`}>
         <div className="sidebar-content">
           <div className="sidebar-logo">
-            <NavLink to="/">
+            <NavLink to="/" onClick={closeMenu}>
               <img src={GumroadLogo} className="logo-full" />
             </NavLink>
           </div>
@@ -46,37 +50,42 @@ const Sidebar = () => {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-shop-window-fill"></span> Home
             </NavLink>
             <NavLink
               to="/products"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-archive-fill"></span> Products
             </NavLink>
             <NavLink
               to="/checkout"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-cart3-fill"></span> Checkout
             </NavLink>
             <NavLink
               to="/emails"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-envelope-fill"></span> Emails
             </NavLink>
             <NavLink
               to="/workflows"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-diagram-2-fill"></span> Workflows
             </NavLink>
-            <NavLink to="/sales">
+            <NavLink to="/sales" onClick={closeMenu}>
               <span className="icon icon-solid-currency-dollar"></span> Sales
             </NavLink>
-            <NavLink to="/analytics">
+            <NavLink to="/analytics" onClick={closeMenu}>
               <span className="icon icon-bar-chart-fill"></span> Analytics
             </NavLink>
             <a href="">
@@ -85,18 +94,21 @@ const Sidebar = () => {
             <NavLink
               to="/payouts"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-solid-currency-dollar"></span> Payouts
             </NavLink>
             <NavLink
               to="/discover"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-solid-search"></span> Discover
             </NavLink>
             <NavLink
               to="/library"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-bookmark-heart-fill"></span> Library
             </NavLink>
@@ -106,12 +118,14 @@ const Sidebar = () => {
             <NavLink
               to="/help"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-book-half"></span> Help
             </NavLink>
             <NavLink
               to="/settings"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={closeMenu}
             >
               <span className="icon icon-gear-fill"></span> Settings
             </NavLink>

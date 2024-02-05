@@ -217,14 +217,18 @@
   .sidebar-nav {
     margin-top: 2rem;
   }
+
+  .sidebar-logo {
+    padding: 1rem;
+  }
+  
+  .logo-full {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1025px) {
   .mobile-header {
     display: none;
-  }
-
-  .sidebar-content {
-    /* Styles for the sidebar content */
   }
 }
