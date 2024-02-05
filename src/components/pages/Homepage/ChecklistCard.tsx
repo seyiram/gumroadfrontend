@@ -1,4 +1,3 @@
-import React from "react";
 import "./ChecklistCardStyles.css";
 
 const ChecklistCard = () => {
