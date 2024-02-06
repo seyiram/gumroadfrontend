@@ -1,5 +1,9 @@
 .checklist-card {
-  margin: 2.5rem 1rem 1rem 1rem;
+  width: 70rem;
+  max-width: calc(100% - 4rem); 
+  margin-top: 4rem;
+  margin-left: 2rem;
+  margin-right: 2rem; 
 }
 
 .checklist-title {
@@ -51,6 +55,7 @@
   .checklist-card {
     width: calc(100% - 2rem);
     margin: 3rem 1rem;
+    max-width: 100%;
   }
   .checklist-grid {
     grid-template-columns: 1fr;
