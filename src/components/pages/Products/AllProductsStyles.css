@@ -1,0 +1,7 @@
+.allproducts-container {
+    width: 100%;
+}
+
+.allproducts-container .product-card {
+    margin-top: 2rem;
+}

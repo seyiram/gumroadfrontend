@@ -15,7 +15,12 @@ const Homepage = () => {
         <h1>Welcome to Gumroad.</h1>
       </header>
       <div className="page-content">
-        <ProductCard image={ProductImage} altText="Create a product" />
+        <ProductCard
+          image={ProductImage}
+          altText="Create a product"
+          title="We're here to help you get paid for your work."
+          buttonText="Create your first product"
+        />
         <ChecklistCard />
         <ActivityCard />
       </div>
