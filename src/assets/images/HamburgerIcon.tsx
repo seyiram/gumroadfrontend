@@ -4,9 +4,9 @@ const HamburgerIcon = () => {
       <path
         d="M4 6.008h16m-16 6h16m-16 6h16"
         stroke="#fff"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

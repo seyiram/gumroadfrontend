@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <img src={image} alt={altText} className="product-card-image" />
       <h2>{title}</h2>
       <p className="product-description1">{description1 && description1}</p>
-      <NavLink to="/new">
+      <NavLink to="/products/new">
         <Button className="cta-button">{buttonText}</Button>
       </NavLink>
       <p className="product-description2">{description2 && description2}</p>

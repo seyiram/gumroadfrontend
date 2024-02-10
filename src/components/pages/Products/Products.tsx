@@ -22,7 +22,7 @@ const Products: React.FC = () => {
         </div>
         <nav className="tablist">
           <NavLink
-            to=""
+            to="/products"
             end
             className={({ isActive }) => (isActive ? "tab active" : "tab")}
           >

@@ -7,13 +7,14 @@ const usePageTitle = (defaultTitle: string): string => {
 
   useEffect(() => {
     const titleMap: { [key: string]: string } = {
-      "": "Home",
-      "products": "Products",
+      "/": "Home",
+      "/products": "Products",
+      "/products/new": "What are you creating?",
       "checkout": "Checkout",
     };
 
     // Extract the first segment of the pathname as the main route
-    const mainRoute = location.pathname.split("/")[1]; // Split and take the second element (first segment after '/')
+    const mainRoute = location.pathname; 
 
     // Fix the page title based on the main route, fall back to defaultTitle if not found
     const currentPageTitle = titleMap[mainRoute] ?? defaultTitle;
