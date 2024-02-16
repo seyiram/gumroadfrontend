@@ -72,7 +72,7 @@
 
 @media (min-width: 1024px) {
   .signup-image-bg {
-    display: grid; /* Show only for viewport width 1024px and above */
+    display: grid; 
     position: fixed;
     top: 0;
     right: 0;

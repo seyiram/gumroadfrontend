@@ -2,6 +2,7 @@ import React from "react";
 import { CurrencyInput, CurrencyOption } from "./CurrencyInput";
 import "./NewProductStyles.css";
 import TypeOption, { typeOptions } from "./TypeOption";
+import { NavLink } from "react-router-dom";
 
 const NewProduct = () => {
   const [focusedIndex, setFocusedIndex] = React.useState(0);
@@ -15,7 +16,6 @@ const NewProduct = () => {
   const [selectedProductType, setSelectedProductType] = React.useState<
     string | null
   >(null);
-
 
   const handleProductName = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -43,7 +43,9 @@ const NewProduct = () => {
           <button className="cancel-button">
             <span className="icon icon-x-square"></span>Cancel
           </button>
-          <button className="customize-button">Next: Customize</button>
+          <NavLink to="/products/customize-product">
+            <button className="customize-button">Next: Customize</button>
+          </NavLink>
         </div>
       </div>
       <div className="new-product-description">

@@ -10,6 +10,10 @@ import AllProducts from "./components/pages/Products/AllProducts";
 import NewProduct from "./components/pages/Products/NewProduct";
 import DiscoverProducts from "./components/pages/Products/DiscoverProducts";
 import AffiliatedProducts from "./components/pages/Products/AffiliatedProducts";
+import CustomizeProduct from "./components/pages/Products/CustomizeProduct/CustomizeProduct";
+import ContentTab from "./components/pages/Products/CustomizeProduct/ContentTab";
+import ShareTab from "./components/pages/Products/CustomizeProduct/ShareTab";
+import DefaultTab from "./components/pages/Products/CustomizeProduct/DefaultTab";
 
 function App() {
   return (
@@ -26,6 +30,14 @@ function App() {
               <Route path="affiliated" element={<AffiliatedProducts />} />
             </Route>
             <Route path="/products/new" element={<NewProduct />} />
+            <Route
+              path="/products/customize-product"
+              element={<CustomizeProduct />}
+            >
+              <Route index element={<DefaultTab />} /> {/* Default tab */}
+              <Route path="content" element={<ContentTab />} />
+              <Route path="share" element={<ShareTab />} />
+            </Route>
           </Route>
         </Routes>
       </div>

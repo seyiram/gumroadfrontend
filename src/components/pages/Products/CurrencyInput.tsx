@@ -1,5 +1,6 @@
 import React from "react";
 import Select, { StylesConfig } from "react-select";
+import "./NewProductStyles.css";
 
 export type CurrencyOption = {
   value: string;
@@ -49,38 +50,34 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   };
 
   const customStyles: StylesConfig<CurrencyOption, false> = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
-      border: "1px solid",
+      borderColor: state.isFocused ? "black" : provided.borderColor,
+      color: "black",
+
+      "&:hover": {
+        ...provided[":hover"],
+        borderColor: "#000",
+      },
       borderRadius: "2rem",
-      boxShadow: "none",
-      width: "100%",
-      padding: "0.1rem 0.5rem",
     }),
-    indicatorSeparator: () => ({
-      display: "none",
-    }),
+    indicatorSeparator: () => ({}),
     singleValue: (provided) => ({
       ...provided,
-      marginRight: "0.1rem",
     }),
     option: (provided, state) => ({
       ...provided,
-      display: "flex",
-      width: "100%",
 
       color: state.isSelected ? "white" : "black",
     }),
     menu: (provided) => ({
       ...provided,
-      width: "auto",
-      textAlign: "left",
+      width: "fit-content",
       whiteSpace: "nowrap",
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
       color: "#000",
-      padding: "1px 2px",
     }),
   };
 
@@ -95,6 +92,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
         classNamePrefix="react-select"
         components={{ SingleValue: customSingleValue }}
         isSearchable={false}
+        menuPlacement="top"
       />
       <input
         type="text"
