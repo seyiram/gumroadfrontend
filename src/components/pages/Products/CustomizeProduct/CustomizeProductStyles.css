@@ -10,7 +10,7 @@
   flex-direction: column;
   background-color: #f4f4f0;
   border-bottom: 1px solid;
-  position: -webkit-sticky; /* For Safari */
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -19,8 +19,8 @@
 .customize-product-header .header-top-row {
   display: flex;
   justify-content: space-between;
-  margin-left: 3rem;
   margin-top: 3rem;
+  margin-left: 3rem;
   margin-right: 3.5rem;
 }
 
@@ -55,8 +55,8 @@
 .customize-product-tablist {
   gap: 1rem;
   margin-top: 2.5rem;
-  margin-left: 3rem;
   margin-bottom: 2.8rem;
+  margin-left: 3rem;
 }
 
 .tab {
@@ -76,14 +76,15 @@
 }
 
 .main-content {
+  display: flex;
 }
 
 .left-panel {
   width: 60%;
+  margin-left: 3rem;
 }
 .product-form {
   margin-top: 4.2rem;
-  margin-left: 3rem;
 }
 
 .product-form-field {
@@ -109,7 +110,6 @@
 }
 
 .text-editor-wrapper {
-  margin-left: 3rem;
   margin-top: 3rem;
 }
 
@@ -119,15 +119,10 @@
   margin-top: 0.5rem;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 20rem; 
-  z-index: 900;
 }
 
 .editor-toolbar {
   display: flex;
-  padding: 5px;
   border-bottom: 1px solid #000;
   background-color: #000;
   padding: 0.8rem;
@@ -184,7 +179,6 @@
   width: 100%;
   height: 12.5rem;
   border: none;
-  padding: 5px;
   font-size: 1rem;
   resize: none;
   padding: 1rem;
@@ -201,8 +195,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-left: 3rem;
   margin-top: 2rem;
+  overflow: hidden;
 }
 
 .url-form-labels {
@@ -215,7 +209,6 @@
   display: flex;
   align-items: center;
   border: 1px solid #000;
-  padding-left: 8px;
   background-color: #fff;
   border-radius: 0.25rem;
   padding: 0.3rem;
@@ -225,6 +218,11 @@
 }
 
 .url-prefix {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  max-width: 60%;
   margin-right: 8px;
   border: 1px solid;
   border-radius: 1rem;
@@ -254,7 +252,6 @@
 
 .custom-domain-wrapper {
   margin-top: 2rem;
-  margin-left: 3rem;
 }
 
 .custom-domain-label {
@@ -280,7 +277,6 @@
 }
 
 .upload-container {
-  margin-left: 3rem;
   margin-top: 2rem;
 }
 
@@ -436,7 +432,6 @@
 
 .thumbnail-upload {
   margin-top: 3rem;
-  margin-left: 3rem;
 }
 
 .thumbnail-label {
@@ -447,7 +442,7 @@
 
 .thumbnail-upload-content {
   display: flex;
-  justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
   margin-top: 1.2rem;
 }
@@ -461,6 +456,7 @@
   cursor: pointer;
   border: 1px dashed #000;
   border-radius: 0.25rem;
+  height: auto;
 }
 
 .thumbnail-upload-icon svg {
@@ -474,7 +470,7 @@
   transform: translateX(-50%);
   background-color: #000;
   color: white;
-  padding: 0.7rem 2.5rem;
+  padding: 1rem 1rem;
   border: none;
   cursor: pointer;
   border-radius: 0.25rem;
@@ -505,7 +501,6 @@
   margin-top: 0.6rem;
   box-shadow: 0.25rem 0.25rem 0rem #000;
   position: relative;
-  margin-left: 3rem;
   z-index: 999;
 }
 
@@ -583,7 +578,6 @@
 
 .product-info {
   margin-top: 3rem;
-  margin-left: 3rem;
   margin-bottom: 4rem;
 }
 
@@ -648,6 +642,7 @@
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #fff;
+  /* width: 100%; */
 }
 
 .pricing-input:hover,
@@ -679,9 +674,100 @@
   margin: 0;
 }
 
-
 .learn-more {
   text-decoration: none;
   color: #000;
   font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-panel {
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    box-sizing: border-box;
+  }
+
+  .customize-product-header {
+    z-index: 1;
+  }
+  .customize-product-header h2 {
+    display: none;
+  }
+  .customize-product-header .header-top-row {
+    display: block;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+  }
+  .customize-product-header button {
+    width: 100%;
+  }
+
+  .customize-product-tablist {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    overflow-x: auto;
+  }
+
+  .editor-toolbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .editor-btn {
+    margin: 0.25rem;
+    font-size: 14px;
+  }
+
+  .editor-textarea {
+    height: auto;
+    min-height: 12.5rem;
+  }
+
+  .product-form {
+    margin-top: 1rem;
+  }
+
+  .upload-options-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .copy-url {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .url-prefix {
+    margin-bottom: 0.5rem;
+  }
+
+  .url-slug {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .url-field {
+    padding: 0.5rem;
+  }
+
+  .thumbnail-upload-options {
+    width: 100%;
+  }
+
+  .thumbnail-upload-wrapper {
+    flex-direction: column;
+  }
+
+  .upload-instructions {
+    min-width: 0;
+  }
 }
