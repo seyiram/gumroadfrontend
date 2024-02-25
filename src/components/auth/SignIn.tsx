@@ -4,6 +4,8 @@ import Input from "../ui/Input";
 import Button from "../ui/Button";
 import GumroadLogo from "../../assets/images/gumroad.svg";
 import useEmailPasswordValidation from "../../utils/useEmailPasswordValidation";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface UserCredentials {
   username: string;
@@ -17,13 +19,25 @@ const SignIn: React.FC = () => {
   });
 
   const { validate, isError } = useEmailPasswordValidation();
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const from = location.state?.from || "/homepage";
+
+  const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate(credentials.username, credentials.password)) {
       console.log("isError", isError);
       console.log("Validation failed!");
-    } else [console.log("User signed in")];
+      return;
+    }
+    try {
+      await login(credentials.username, credentials.password);
+      navigate(from);
+    } catch (error) {
+      console.error("Failed to sign in", error);
+    }
   };
 
   return (
@@ -31,15 +45,15 @@ const SignIn: React.FC = () => {
       <div className="signup-form-container">
         <header className="signup-header">
           <div className="header-main">
-            <a href="/">
+            <a href="/homepage">
               <img src={GumroadLogo} alt="logo" />
             </a>
-            <div className="actions">
+            <div className="header-actions">
               <a href="/sign-up">Sign up</a>
             </div>
           </div>
         </header>
-        <form onSubmit={handleSubmit} className="signup-form">
+        <form onSubmit={handleSignInSubmit} className="signup-form">
           <Input
             label="Email"
             type="text"

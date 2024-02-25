@@ -1,4 +1,5 @@
-import './NewProductStyles.css'
+import React from "react";
+import "./NewProductStyles.css";
 
 import DigitalProductIcon from "../../../assets/images/digital-product-icon.png";
 import CourseIcon from "../../../assets/images/course-tutorial-icon.png";

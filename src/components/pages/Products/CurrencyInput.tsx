@@ -1,19 +1,8 @@
 import React from "react";
 import Select, { StylesConfig } from "react-select";
 import "./NewProductStyles.css";
-
-export type CurrencyOption = {
-  value: string;
-  label: string;
-  symbol: string;
-};
-
-interface CurrencyInputProps {
-  selectedCurrency: CurrencyOption | null;
-  setSelectedCurrency: React.Dispatch<
-    React.SetStateAction<CurrencyOption | null>
-  >;
-}
+import { CurrencyOption } from "../../../context/ProductFormTypes";
+import { useProductForm } from "../../../context/ProductFormContext";
 
 const currencyOptions: CurrencyOption[] = [
   { value: "usd", symbol: "$", label: "US Dollars" },
@@ -35,18 +24,21 @@ const currencyOptions: CurrencyOption[] = [
   { value: "krw", symbol: "₩", label: "Korean Won" },
 ];
 
-export const CurrencyInput: React.FC<CurrencyInputProps> = ({
-  selectedCurrency,
-  setSelectedCurrency,
-}) => {
-  const customSingleValue = ({ data }: { data: CurrencyOption }) => (
-    <div>{data.symbol}</div>
-  );
+export const CurrencyInput: React.FC = ({}) => {
+  const { state, dispatch } = useProductForm();
 
-  const handleChange = (newValue: CurrencyOption | null) => {
-    if (newValue !== null) {
-      setSelectedCurrency(newValue);
+  const handleCurrencySelection = (newValue: CurrencyOption | null) => {
+    if (newValue) {
+      dispatch({
+        type: "SET_FIELD",
+        field: "selectedCurrency",
+        value: newValue,
+      });
     }
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "SET_FIELD", field: "price", value: e.target.value });
   };
 
   const customStyles: StylesConfig<CurrencyOption, false> = {
@@ -82,22 +74,29 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   };
 
   return (
-    <div className="input-group" tabIndex={0}>
+    <div
+      className={`input-group  ${
+        state.validationErrors.price ? "input-error" : ""
+      }`}
+      tabIndex={0}
+    >
       <Select
         options={currencyOptions}
-        value={selectedCurrency}
+        value={state.selectedCurrency}
         getOptionLabel={(option) => `${option.symbol} (${option.label})`}
-        onChange={handleChange}
+        onChange={handleCurrencySelection}
         styles={customStyles}
         classNamePrefix="react-select"
-        components={{ SingleValue: customSingleValue }}
+        components={{ SingleValue: ({ data }) => <div>{data.symbol}</div> }}
         isSearchable={false}
         menuPlacement="top"
       />
       <input
         type="text"
-        className="price-input"
+        className={`price-input`}
         placeholder="Price your product"
+        value={state.price}
+        onChange={handlePriceChange}
         required
       />
     </div>

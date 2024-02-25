@@ -236,7 +236,8 @@
 }
 
 .input-group:focus-within,
-.input-group:hover {
+.input-group:hover,
+.input-error {
   outline: 2px solid #ff90e8;
 }
 
@@ -248,7 +249,12 @@
 
 .react-select__container:hover,
 .react-select__container:focus {
-  border: 1px solid #000;
+  border: 1px solid #000 !important;
+}
+.react-select-control {
+  border: 1px solid #000 !important;
+  outline: none !important;
+  display: flex !important;
 }
 
 .react-select__control:hover,
@@ -268,9 +274,7 @@
   border: 1px solid !important;
 }
 
-.css-dsghci-control:hover {
-  border: 1px solid #000 !important;
-  outline: none !important;
+.react-select-control .css-dsghci-control:hover {
 }
 
 /* media queries */

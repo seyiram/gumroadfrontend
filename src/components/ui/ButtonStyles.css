@@ -19,3 +19,8 @@
   box-shadow: 0.25rem 0.25rem 0rem;
   transform: translate(-0.25rem, -0.25rem);
 }
+
+.submit-btn.disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}

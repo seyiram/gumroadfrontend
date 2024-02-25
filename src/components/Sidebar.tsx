@@ -42,13 +42,13 @@ const Sidebar = () => {
       <div className={`sidebar ${isMenuOpen ? "open" : ""}`}>
         <div className="sidebar-content">
           <div className="sidebar-logo">
-            <NavLink to="/" onClick={closeMenu}>
+            <NavLink to="/homepage" onClick={closeMenu}>
               <img src={GumroadLogo} className="logo-full" />
             </NavLink>
           </div>
           <div className="sidebar-nav">
             <NavLink
-              to="/"
+              to="/homepage"
               className={({ isActive }) => (isActive ? "active" : "")}
               onClick={closeMenu}
             >

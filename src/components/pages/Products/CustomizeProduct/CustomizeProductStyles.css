@@ -430,6 +430,80 @@
   color: rgb(0, 0, 0);
 }
 
+.cover-image-select {
+  border-radius: 0.25rem;
+  margin-top: 3rem;
+}
+
+.cover-image-select img {
+  border: 2px solid #000;
+  width: 100%;
+  border-radius: 0.25rem;
+  max-width: 50%;
+  height: auto;
+}
+
+.cover-image-select img:hover {
+  filter: brightness(50%);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-cover-image-container {
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.img-tab-button {
+  width: 5rem;
+}
+
+.img-tab-button img {
+  border: 1px solid #000;
+  width: 100%;
+  border-radius: 0.25rem;
+  box-shadow: 0.25rem 0.25rem 0rem #000;
+}
+
+.upload-tab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  border: 1px solid;
+  padding: 0 0.7rem;
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, color 0.1s ease,
+    background-color 0.1s ease;
+  cursor: pointer;
+}
+
+.upload-tab-button:hover {
+  transform: translate(-0.25rem, -0.25rem);
+  box-shadow: 0.25rem 0.25rem 0rem #000;
+}
+
+.selected-image {
+  margin-top: 2rem;
+}
+
+.selected-image img {
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  width: 100%;
+  height: 70%;
+}
+
 .thumbnail-upload {
   margin-top: 3rem;
 }
@@ -621,7 +695,7 @@
   border-radius: 0.25rem;
   border: 1px solid;
   font-size: 1rem;
-  color: #999;
+  color: #000;
   width: 100%;
 }
 
@@ -642,7 +716,6 @@
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #fff;
-  /* width: 100%; */
 }
 
 .pricing-input:hover,
@@ -655,10 +728,10 @@
   justify-content: center;
   align-items: center;
   height: 2rem;
-  width: 2rem;
   border: 1px solid #000;
-  border-radius: 50%;
+  border-radius: 10rem;
   font-weight: bold;
+  padding: 0.5rem 0.75rem;
 }
 
 .currency-input {
@@ -666,6 +739,7 @@
   outline: none;
   margin-left: 0.5rem;
   flex-grow: 1;
+  font-size: 1rem;
 }
 
 .currency-input::-webkit-outer-spin-button,
@@ -678,6 +752,11 @@
   text-decoration: none;
   color: #000;
   font-size: 14px;
+}
+
+.product-submit-btn.disabled {
+  background-color: grey;
+  cursor: not-allowed;
 }
 
 @media (max-width: 1024px) {

@@ -1,38 +1,48 @@
 import React from "react";
-import { CurrencyInput, CurrencyOption } from "./CurrencyInput";
+import { CurrencyInput } from "./CurrencyInput";
 import "./NewProductStyles.css";
 import TypeOption, { typeOptions } from "./TypeOption";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useProductForm } from "../../../context/ProductFormContext";
 
 const NewProduct = () => {
-  const [focusedIndex, setFocusedIndex] = React.useState(0);
-  const [selectedCurrency, setSelectedCurrency] =
-    React.useState<CurrencyOption | null>({
-      value: "usd",
-      symbol: "$",
-      label: "US Dollars",
-    });
-  const [productName, setProductName] = React.useState("");
-  const [selectedProductType, setSelectedProductType] = React.useState<
-    string | null
-  >(null);
+  const navigate = useNavigate();
 
-  const handleProductName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setProductName(event.target.value);
-    console.log("user Product name", productName);
-  };
+  const { state, dispatch, handleChange, handleSetError } = useProductForm();
+  console.log("Product type before user selects: ", state.selectedProductType)
 
   const handleSelectedProductType = (typeTitle: string) => {
-    setSelectedProductType(typeTitle);
     const newIndex = typeOptions.findIndex(
       (option) => option.title === typeTitle
     );
     if (newIndex !== -1) {
-      setFocusedIndex(newIndex);
+      dispatch({type: 'SET_FIELD', field: "focusedIndex", value: newIndex})
+      console.log("focusedIndex updated: ", state.focusedIndex);
+      dispatch({type: 'SET_FIELD', field:"selectedProductType", value: typeTitle});
+      console.log("SelectedProductType: ", state.selectedProductType);
     }
 
-    console.log("user selected product", selectedProductType);
+    console.log("user selected product", state.selectedProductType);
+  };
+
+  const validateAndNavigate = () => {
+    let isValid = true;
+
+    dispatch({ type: "CLEAR_ERRORS" });
+
+    if (!state.productName.trim()) {
+      handleSetError("productName", "Product name is required!");
+      console.log(state.validationErrors.productName);
+      isValid = false;
+    } else if (!state.price) {
+      handleSetError("price", "Price is required!");
+      console.log(state.validationErrors.price);
+      isValid = false;
+    }
+
+    if (isValid) {
+      navigate("/products/customize-product");
+    }
   };
 
   return (
@@ -43,9 +53,9 @@ const NewProduct = () => {
           <button className="cancel-button">
             <span className="icon icon-x-square"></span>Cancel
           </button>
-          <NavLink to="/products/customize-product">
-            <button className="customize-button">Next: Customize</button>
-          </NavLink>
+          <button className="customize-button" onClick={validateAndNavigate}>
+            Next: Customize
+          </button>
         </div>
       </div>
       <div className="new-product-description">
@@ -64,8 +74,11 @@ const NewProduct = () => {
               type="text"
               id="productName"
               placeholder="Name of product"
-              value={productName}
-              onChange={handleProductName}
+              value={state.productName}
+              onChange={handleChange("productName")}
+              className={
+                state.validationErrors.productName ? "input-error" : ""
+              }
               required
             />
           </div>
@@ -76,7 +89,7 @@ const NewProduct = () => {
                 <div
                   key={index}
                   className={`type-option-wrapper ${
-                    index === focusedIndex ? "focused" : ""
+                    index === state.focusedIndex ? "focused" : ""
                   }`}
                   onClick={() => handleSelectedProductType(option.title)}
                   role="button"
@@ -93,10 +106,7 @@ const NewProduct = () => {
           </div>
           <div className="form-group currency-input-section">
             <label htmlFor="price">Price</label>
-            <CurrencyInput
-              selectedCurrency={selectedCurrency}
-              setSelectedCurrency={setSelectedCurrency}
-            />
+            <CurrencyInput />
           </div>
         </div>
       </div>

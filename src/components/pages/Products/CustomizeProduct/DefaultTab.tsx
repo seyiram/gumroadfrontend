@@ -1,23 +1,53 @@
-import React from "react";
 import "./CustomizeProductStyles.css";
+import React from "react";
+import { ThreeDots } from "react-loader-spinner";
 import UploadIcon from "../svgs/UploadIcon";
 import ExternalLinkIcon from "../svgs/ExternalLinkIcon";
 import GenerateImageIcon from "../svgs/GenerateImageIcon";
 import ThumbnailImage from "../svgs/ThumbnailImage";
+import { useProductForm } from "../../../../context/ProductFormContext";
+import Button from "../../../ui/Button";
+import { useGenerateImage } from "../../../../hooks/useGenerateImage";
+import IconPlusCircle from "../svgs/IconPlusCircle";
+
 
 const DefaultTab = () => {
   const [showUploadOptions, setShowUploadOptions] = React.useState(false);
-  const [showAIImageSearch, setShowAIImageSearch] = React.useState(false);
+  const [showCoverImageSearch, setShowCoverImageSearch] = React.useState(false);
   const [showThumbnailUploadOptions, setShowThumbnailUploadOptions] =
     React.useState(false);
   const [showThumbnailSearch, setShowThumbnailSearch] = React.useState(false);
+  const [isUploadContainerVisible, setIsUploadContainerVisible] =
+    React.useState(true);
 
-  const handleUploadClick = () => {
+  const { state, dispatch, handleChange } = useProductForm();
+ 
+
+  const { generateImage, isPending } = useGenerateImage();
+
+  const handleGenerateImage = () => {
+    if (state.coverImagePrompt && !isPending) {
+      generateImage(state.coverImagePrompt, {
+        onSuccess: (data) => {
+          dispatch({ type: "SET_COVER_IMAGE", url: data.url });
+          console.log("ImageUrl from Default Tab: ", data.url);
+        },
+        onError: (error) => {
+          console.log("Error generating image: ", error);
+          throw new Error("Error generating image from DALL-E");
+        },
+      });
+    }
+  };
+
+  console.log("Image here: ", state.coverImage);
+
+  const handleCoverImageUploadClick = () => {
     setShowUploadOptions(!showUploadOptions);
   };
 
   const handleGenerateWithAIClick = () => {
-    setShowAIImageSearch(!showAIImageSearch);
+    setShowCoverImageSearch(!showCoverImageSearch);
   };
 
   const handleThumbnailUploadClick = () => {
@@ -28,6 +58,10 @@ const DefaultTab = () => {
     setShowThumbnailSearch(!showThumbnailSearch);
   };
 
+  const handleAIImageClick = () => {
+    setIsUploadContainerVisible(false);
+  };
+
   return (
     <div className="main-content">
       <aside className="left-panel">
@@ -36,7 +70,13 @@ const DefaultTab = () => {
             <label htmlFor="productName" className="product-label">
               Name
             </label>
-            <input type="text" id="name" placeholder="" />
+            <input
+              type="text"
+              id="name"
+              placeholder=""
+              defaultValue={state.productName}
+              onChange={handleChange("productName")}
+            />
           </div>
         </section>
         <section className="text-editor-wrapper">
@@ -80,6 +120,8 @@ const DefaultTab = () => {
             <textarea
               className="editor-textarea"
               placeholder="Describe your product..."
+              value={state.productDescription}
+              onChange={handleChange("productDescription")}
             ></textarea>
           </article>
         </section>
@@ -92,7 +134,12 @@ const DefaultTab = () => {
           </div>
           <div className="url-field">
             <span className="url-prefix">yoggijerry.gumroad.com/l/</span>
-            <input type="text" className="url-slug" />
+            <input
+              type="text"
+              className="url-slug"
+              value={state.urlSlug}
+              onChange={handleChange("urlSlug")}
+            />
           </div>
         </section>
         <section className="custom-domain-wrapper">
@@ -100,75 +147,143 @@ const DefaultTab = () => {
             <label htmlFor="custom-domain">Custom Domain</label>
             <span className="learn-more">Learn more</span>
           </div>
-          <input type="text" placeholder="yourdomain.com" />
+          <input
+            type="text"
+            placeholder="yourdomain.com"
+            value={state.customDomain}
+            onChange={handleChange("customDomain")}
+          />
         </section>
         <section className="upload-container">
           <label htmlFor="cover-upload" className="cover-label">
             Cover
           </label>
-          <div className={`upload-area ${showUploadOptions ? "hidden" : ""}`}>
-            <label
-              htmlFor="cover-upload"
-              className="upload-button"
-              onClick={handleUploadClick}
-            >
-              <span className="upload-icon">
-                <UploadIcon />
-              </span>
-              Upload images or videos
-            </label>
-            <p className="upload-instructions">
-              Images should be horizontal, at least 1280x720px, and 72 DPI (dots
-              per inch).
-            </p>
-          </div>
-          {showUploadOptions && (
-            <div className={`upload-options-container`}>
-              <div className="upload-options-wrapper">
-                <div className="upload-option">
-                  <label htmlFor="file-upload" className="option-label">
-                    <span>
-                      <UploadIcon />
-                    </span>
-                    Computer files
-                  </label>
-                  <input
-                    type="file"
-                    id="file-upload"
-                    className="option-input"
-                    hidden
-                  />
-                </div>
-                <div className="upload-option">
-                  <span>
-                    <ExternalLinkIcon />
-                  </span>
-                  External link
-                </div>
-                <div
-                  className={`upload-option ${
-                    showAIImageSearch ? "focus" : ""
-                  }`}
-                  onClick={() => handleGenerateWithAIClick()}
+          {isUploadContainerVisible ? (
+            <>
+              <div
+                className={`upload-area ${showUploadOptions ? "hidden" : ""}`}
+              >
+                <label
+                  htmlFor="cover-upload"
+                  className="upload-button"
+                  onClick={handleCoverImageUploadClick}
                 >
-                  <span>
-                    <GenerateImageIcon />
+                  <span className="upload-icon">
+                    <UploadIcon />
                   </span>
-                  Generate with AI
-                </div>
+                  Upload images or videos
+                </label>
+                <p className="upload-instructions">
+                  Images should be horizontal, at least 1280x720px, and 72 DPI
+                  (dots per inch).
+                </p>
               </div>
-              {showAIImageSearch && (
-                <div className="generate-image-container">
-                  <input
-                    className="generate-image-input"
-                    type="text"
-                    placeholder="Write a prompt to generate an image"
-                  />
-                  <span className="generate-image-info">
-                    e.g. 'An image of a girl sitting on a beach'
-                  </span>
-                </div>
+              {showUploadOptions && (
+                <section className={`upload-options-container`}>
+                  <div className="upload-options-wrapper">
+                    <div className="upload-option">
+                      <label htmlFor="file-upload" className="option-label">
+                        <span>
+                          <UploadIcon />
+                        </span>
+                        Computer files
+                      </label>
+                      <input
+                        type="file"
+                        id="file-upload"
+                        className="option-input"
+                        hidden
+                      />
+                    </div>
+                    <div className="upload-option">
+                      <span>
+                        <ExternalLinkIcon />
+                      </span>
+                      External link
+                    </div>
+                    <div
+                      className={`upload-option ${
+                        showCoverImageSearch ? "focus" : ""
+                      }`}
+                      onClick={() => handleGenerateWithAIClick()}
+                    >
+                      <span>
+                        <GenerateImageIcon />
+                      </span>
+                      Generate with AI
+                    </div>
+                  </div>
+                  {showCoverImageSearch && (
+                    <div className="generate-image-container">
+                      <input
+                        className="generate-image-input"
+                        type="text"
+                        placeholder="Write a prompt to generate an image"
+                        value={state.coverImagePrompt}
+                        onChange={(event) =>
+                          dispatch({
+                            type: "SET_FIELD",
+                            field: "coverImagePrompt",
+                            value: event.target.value,
+                          })
+                        }
+                      />
+                      <Button
+                        onClick={handleGenerateImage}
+                        disabled={isPending}
+                      >
+                        {" "}
+                        Generate image
+                      </Button>
+                      <span className="generate-image-info">
+                        e.g. 'An image of a girl sitting on a beach'
+                      </span>
+                      {isPending && (
+                        <div className="loader">
+                          <ThreeDots
+                            visible={true}
+                            height="80"
+                            width="80"
+                            color="#ff90e8"
+                            radius="9"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                          />
+                        </div>
+                      )}
+
+                      {!isPending && (
+                        <div className="cover-image-select">
+                          {Array.isArray(state.coverImage) &&
+                            state.coverImage.map((image, index) => (
+                              <img
+                                key={index}
+                                src={image}
+                                alt={`Generated from DALL·E ${index + 1}`}
+                                onClick={handleAIImageClick}
+                              />
+                            ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </section>
               )}
+            </>
+          ) : (
+            <div className="selected-cover-image-container">
+              <div className="tab-buttons">
+                <span className="img-tab-button">
+                  <img src={state.coverImage[0]} alt="" />
+                </span>
+                <span className="upload-tab-button">
+                  <IconPlusCircle />
+                </span>
+              </div>
+              <div className="selected-image">
+                <img src={state.coverImage[0]} alt="Generated by DALL-E" />
+              </div>
             </div>
           )}
         </section>
@@ -222,7 +337,7 @@ const DefaultTab = () => {
               </div>
             </div>
             {showThumbnailSearch && (
-              <div className="thumbnail-image-search">
+              <section className="thumbnail-image-search">
                 <input
                   type="text"
                   placeholder="Write a prompt to generate an image"
@@ -231,14 +346,19 @@ const DefaultTab = () => {
                 <span className="generate-thumbnail-info">
                   e.g. An image of a girl sitting on the beach
                 </span>
-              </div>
+              </section>
             )}
           </section>
         )}
         <section className="product-info">
           <h2>Product Info</h2>
           <label htmlFor="callToAction">Call to action</label>
-          <select id="callToAction" name="callToAction">
+          <select
+            id="callToAction"
+            name="selectedAction"
+            value={state.selectedAction}
+            onChange={handleChange("selectedAction")}
+          >
             <option value="want">I want this!</option>
             <option value="buy" selected>
               Buy this
@@ -247,19 +367,29 @@ const DefaultTab = () => {
           </select>
           <div className="summary">
             <label htmlFor="callToAction">Summary</label>
-            <input type="text" placeholder="You'll get..." />
+            <input
+              type="text"
+              placeholder="You'll get..."
+              value={state.summary}
+              onChange={handleChange("summary")}
+            />
           </div>
 
-          <div className="pricing-container">
+          <section className="pricing-container">
             <h2>Pricing</h2>
             <label className="amount-label" htmlFor="price">
               Amount
             </label>
             <div className="pricing-input">
-              <div className="symbol-box">$</div>
-              <input type="text" className="currency-input" />
+              <div className="symbol-box">{state.selectedCurrency.symbol}</div>
+              <input
+                type="text"
+                className="currency-input"
+                defaultValue={state.price}
+                onChange={handleChange("price")}
+              />
             </div>
-          </div>
+          </section>
         </section>
       </aside>
       <div className="right-panel"></div>

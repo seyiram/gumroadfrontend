@@ -1,15 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useProductForm } from "../context/ProductFormContext";
 
 const usePageTitle = (defaultTitle: string): string => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState<string>(defaultTitle);
+  const { state} = useProductForm()
 
   useEffect(() => {
     const titleMap: { [key: string]: string } = {
-      "/": "Home",
+      "/": "Sign In",
+      "/homepage": "Home",
       "/products": "Products",
       "/products/new": "What are you creating?",
+      '/products/customize-product': state.productName,
       "checkout": "Checkout",
     };
 

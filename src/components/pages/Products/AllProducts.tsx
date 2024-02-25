@@ -1,11 +1,12 @@
+import React from "react";
 import "./AllProductsStyles.css";
-import ProductCard from "./ProductCreateCard";
+import ProductCreateCard from "./ProductCreateCard";
 import ProductNudgeImage from "../../../assets/images/product_nudge-8c7fc991c030d82ce090c71d5dc0640f56e34bac45e8b2c7e6de0bc72ee3fb8d.svg";
 
 const AllProducts = () => {
   return (
     <div className="allproducts-container">
-      <ProductCard
+      <ProductCreateCard
         image={ProductNudgeImage}
         altText="product image"
         title="We've never met an idea we didn't like."

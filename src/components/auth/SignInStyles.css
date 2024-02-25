@@ -38,8 +38,7 @@
   margin-right: 1rem;
 }
 
-
-.actions a {
+.header-actions a {
   color: #000;
 }
 
@@ -70,7 +69,18 @@
 }
 
 .input-error {
-  border: 1px solid #ff90e8;
+  outline: 2px solid #ff90e8;
+  animation: blink 1s ease-out 0s 1;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    outline: 2px solid #ff90e8;
+  }
+  50% {
+    outline: 2px solid transparent;
+  }
 }
 
 /* Media Queries */
@@ -102,4 +112,3 @@
     width: 100%;
   }
 }
-
