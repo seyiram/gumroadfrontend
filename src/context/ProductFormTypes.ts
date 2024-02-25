@@ -13,7 +13,7 @@ export interface ProductFormState {
   productDescription: string;
   urlSlug: string;
   summary: string;
-  price: number;
+  price: string;
   customDomain: string;
   coverImage: string[];
   thumbnailImage: string;

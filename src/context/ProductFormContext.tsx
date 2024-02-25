@@ -12,7 +12,7 @@ const initialState: ProductFormState = {
   productName: "",
   selectedProductType: typeOptions[0].title,
   selectedCurrency: { value: "usd", symbol: "$", label: "US Dollars" },
-  price: 0,
+  price: "",
   productDescription: "",
   validationErrors: {},
   customDomain: "",

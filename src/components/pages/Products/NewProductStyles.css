@@ -274,7 +274,13 @@
   border: 1px solid !important;
 }
 
-.react-select-control .css-dsghci-control:hover {
+.new-product-container .css-1t2o5ab-control {
+  border-color: #000 !important;
+}
+
+.new-product-container .css-hlgwow {
+  display: flex !important;
+  padding: 3px 13px !important;
 }
 
 /* media queries */
