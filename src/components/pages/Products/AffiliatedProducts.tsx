@@ -1,3 +1,4 @@
+import React from "react";
 import "./AffiliatedProductsStyles.css";
 
 const AffiliatedProducts = () => {

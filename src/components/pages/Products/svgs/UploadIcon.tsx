@@ -1,3 +1,4 @@
+import React from "react";
 const UploadIcon = ({ width = 20, height = 20 }) => {
   return (
     <svg

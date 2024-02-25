@@ -1,3 +1,4 @@
+import React from "react";
 const ExternalLinkIcon = ({ width = 20, height = 20 }) => {
   return (
     <svg

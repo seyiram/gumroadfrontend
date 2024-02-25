@@ -6,7 +6,7 @@ import useSubmitProductForm from "../../../../hooks/useSubmitProductForm";
 
 const CustomizeProduct = () => {
   const { state } = useProductForm();
-  const { submitForm, isSubmitting, error } = useSubmitProductForm();
+  const { submitForm, isSubmitting } = useSubmitProductForm();
   const navigate = useNavigate();
 
   const handleProductSubmit = async () => {

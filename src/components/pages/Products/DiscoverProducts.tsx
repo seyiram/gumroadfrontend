@@ -1,3 +1,4 @@
+import React from 'react';
 import './DiscoverProductsStyles.css';
 
 const DiscoverProducts = () => {

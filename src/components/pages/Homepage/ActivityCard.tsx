@@ -1,3 +1,4 @@
+import React from "react";
 import "./ActivityCardStyles.css";
 
 const ActivityCard = () => {
