@@ -5,7 +5,7 @@ import { useProductForm } from "../context/ProductFormContext";
 const usePageTitle = (defaultTitle: string): string => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState<string>(defaultTitle);
-  const { state} = useProductForm()
+  const { state } = useProductForm();
 
   useEffect(() => {
     const titleMap: { [key: string]: string } = {
@@ -13,22 +13,26 @@ const usePageTitle = (defaultTitle: string): string => {
       "/homepage": "Home",
       "/products": "Products",
       "/products/new": "What are you creating?",
-      '/products/customize-product': state.productName,
-      "checkout": "Checkout",
+      "/checkout": "Checkout",
     };
 
-    // Extract the first segment of the pathname as the main route
-    const mainRoute = location.pathname; 
+    // Check if the current pathname starts with the dynamic path
+    const dynamicPathRegex = /^\/products\/customize-product\/new\/(.+)/;
+    const match = location.pathname.match(dynamicPathRegex);
 
-    // Fix the page title based on the main route, fall back to defaultTitle if not found
-    const currentPageTitle = titleMap[mainRoute] ?? defaultTitle;
+    let currentPageTitle = titleMap[location.pathname] ?? defaultTitle;
+
+    // If the current pathname matches the dynamic path, use the product name
+    if (match && state.productName) {
+      currentPageTitle = state.productName;
+    }
 
     // Set the document title
     document.title = currentPageTitle;
 
     // Update state with the current page title
     setPageTitle(currentPageTitle);
-  }, [location.pathname, defaultTitle]);
+  }, [location.pathname, state.productName, defaultTitle]);
 
   return pageTitle;
 };

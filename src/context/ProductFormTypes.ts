@@ -11,6 +11,7 @@ export interface ProductFormState {
   productName: string;
   selectedProductType: string | null;
   productDescription: string;
+  urlPrefix: string;
   urlSlug: string;
   summary: string;
   price: string;
@@ -24,6 +25,7 @@ export interface ProductFormState {
   };
   coverImagePrompt: string;
   thumbnailImagePrompt: string;
+  published: boolean;
 }
 
 export type ProductFormAction =

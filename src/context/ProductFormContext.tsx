@@ -3,9 +3,11 @@ import React, {
   useReducer,
   useContext,
   useCallback,
+  useEffect,
 } from "react";
 import { ProductFormState, ProductFormAction } from "./ProductFormTypes";
 import { typeOptions } from "../components/pages/Products/TypeOption";
+import { useAuth } from "./AuthContext";
 
 const initialState: ProductFormState = {
   focusedIndex: 0,
@@ -19,10 +21,12 @@ const initialState: ProductFormState = {
   coverImage: [],
   thumbnailImage: "",
   selectedAction: "want",
+  urlPrefix: "",
   urlSlug: "",
   summary: "",
   coverImagePrompt: "",
   thumbnailImagePrompt: "",
+  published: false,
 };
 
 const productFormReducer = (
@@ -86,6 +90,20 @@ export const ProductFormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(productFormReducer, initialState);
+  const { currentUser, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading && currentUser?.email) {
+      const generateUrlPrefixFromEmail = (email: string) => {
+        const emailPrefix = email.split("@")[0];
+        const sanitizedPrefix = emailPrefix.replace(/[^a-zA-Z0-9_.-]/g, "");
+        return `${sanitizedPrefix}.gumroad.com/l/`;
+      };
+
+      const urlPrefix = generateUrlPrefixFromEmail(currentUser.email);
+      dispatch({ type: "SET_FIELD", field: "urlPrefix", value: urlPrefix });
+    }
+  }, [currentUser, dispatch, loading]);
 
   const handleChange = useCallback(
     (field: keyof ProductFormState) =>

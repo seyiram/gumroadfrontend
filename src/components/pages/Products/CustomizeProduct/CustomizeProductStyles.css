@@ -445,6 +445,7 @@
 
 .cover-image-select img:hover {
   filter: brightness(50%);
+  cursor: pointer;
 }
 
 .loader {
@@ -569,7 +570,8 @@
 .thumbnail-upload-options {
   border: 1px solid;
   padding: 1rem 1rem;
-  width: 65%;
+  width: 100%;
+  max-width: 37rem;
   background-color: #fff;
   border-radius: 0.25rem;
   margin-top: 0.6rem;

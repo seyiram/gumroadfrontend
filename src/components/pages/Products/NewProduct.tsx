@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CurrencyInput } from "./CurrencyInput";
 import "./NewProductStyles.css";
 import TypeOption, { typeOptions } from "./TypeOption";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useProductForm } from "../../../context/ProductFormContext";
 
 const NewProduct = () => {
   const navigate = useNavigate();
 
   const { state, dispatch, handleChange, handleSetError } = useProductForm();
-  console.log("Product type before user selects: ", state.selectedProductType)
+  console.log("Product type before user selects: ", state.selectedProductType);
+
+  const generateRandomSlug = () => {
+    const characters = "abcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = 0; i < 5; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  };
+
+  useEffect(() => {
+    const newSlug = generateRandomSlug();
+    dispatch({ type: "SET_FIELD", field: "urlSlug", value: newSlug });
+  }, [dispatch]);
 
   const handleSelectedProductType = (typeTitle: string) => {
     const newIndex = typeOptions.findIndex(
       (option) => option.title === typeTitle
     );
     if (newIndex !== -1) {
-      dispatch({type: 'SET_FIELD', field: "focusedIndex", value: newIndex})
+      dispatch({ type: "SET_FIELD", field: "focusedIndex", value: newIndex });
       console.log("focusedIndex updated: ", state.focusedIndex);
-      dispatch({type: 'SET_FIELD', field:"selectedProductType", value: typeTitle});
+      dispatch({
+        type: "SET_FIELD",
+        field: "selectedProductType",
+        value: typeTitle,
+      });
       console.log("SelectedProductType: ", state.selectedProductType);
     }
 
@@ -41,7 +61,7 @@ const NewProduct = () => {
     }
 
     if (isValid) {
-      navigate("/products/customize-product");
+      navigate(`/products/customize-product/new/${state.urlSlug}`);
     }
   };
 
@@ -50,9 +70,11 @@ const NewProduct = () => {
       <div className="new-product-header">
         <h1 className="new-product-title">Publish your first product</h1>
         <div className="actions">
-          <button className="cancel-button">
-            <span className="icon icon-x-square"></span>Cancel
-          </button>
+          <NavLink to="/">
+            <button className="cancel-button">
+              <span className="icon icon-x-square"></span>Cancel
+            </button>
+          </NavLink>
           <button className="customize-button" onClick={validateAndNavigate}>
             Next: Customize
           </button>

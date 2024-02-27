@@ -133,7 +133,7 @@ const DefaultTab = () => {
             </span>
           </div>
           <div className="url-field">
-            <span className="url-prefix">yoggijerry.gumroad.com/l/</span>
+            <span className="url-prefix">{state.urlPrefix}</span>
             <input
               type="text"
               className="url-slug"

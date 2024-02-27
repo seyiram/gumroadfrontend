@@ -16,6 +16,7 @@ import ShareTab from "./components/pages/Products/CustomizeProduct/ShareTab";
 import DefaultTab from "./components/pages/Products/CustomizeProduct/DefaultTab";
 import RedirectToHomepageIfAuthenticated from "./routes/RedirectToHomepageIfAuthenticated";
 import ProtectedRoute from "./routes/ProtectedRoutes";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
               </Route>
               <Route path="/products/new" element={<NewProduct />} />
               <Route
-                path="/products/customize-product"
+                path="/products/customize-product/new/:urlSlug"
                 element={<CustomizeProduct />}
               >
                 <Route index element={<DefaultTab />} />
@@ -44,6 +45,7 @@ function App() {
               </Route>
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
