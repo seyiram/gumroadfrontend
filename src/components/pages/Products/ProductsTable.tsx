@@ -2,19 +2,7 @@ import React from "react";
 import "./ProductsTable.css";
 import IconCardImageFill from "./svgs/IconCardImageFill";
 import { NavLink } from "react-router-dom";
-import useProducts from "../../../hooks/useProducts";
-
-type Product = {
-  id: number;
-  name: string;
-  sales_count: number;
-  revenue: string;
-  price: string;
-  status: string;
-  url: string;
-  published: boolean;
-  currency: string;
-};
+import useProducts, { Product } from "../../../hooks/useProducts";
 
 const ProductsTable: React.FC = () => {
   const { data: productsData } = useProducts();
@@ -72,7 +60,10 @@ const ProductsTable: React.FC = () => {
                 <div className="product-name">
                   <div className="product-name-wrapper">
                     <span className="product-name-title">{product.name}</span>
-                    <NavLink to={product.url} className="product-url">
+                    <NavLink
+                      to={`/products/${product.id}`}
+                      className="product-url"
+                    >
                       {product.url}
                     </NavLink>
                   </div>
@@ -93,7 +84,10 @@ const ProductsTable: React.FC = () => {
             <td>Totals</td>
             <td></td>
             <td>{totalSales.toString()}</td>
-            <td>{products[0]?.currency}{typeof totalRevenue === 'number' || 0}</td>
+            <td>
+              {products[0]?.currency}
+              {typeof totalRevenue === "number" || 0}
+            </td>
             <td></td>
             <td></td>
             <td></td>

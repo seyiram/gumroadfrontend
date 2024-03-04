@@ -6,7 +6,7 @@ import SignIn from "../components/auth/SignIn";
 const RedirectToHomepageIfAuthenticated = () => {
   const { isAuthenticated } = useAuth();
   console.log("isAuthenticated here:", isAuthenticated);
-  return isAuthenticated ? <Navigate to="/homepage" /> : <SignIn />;
+  return isAuthenticated ? <Navigate to="/homepage" replace /> : <SignIn />;
 };
 
 export default RedirectToHomepageIfAuthenticated;

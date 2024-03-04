@@ -1,5 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
+export type Product = {
+  id: number;
+  name: string;
+  sales_count: number;
+  revenue: string;
+  price: string;
+  status: string;
+  url: string;
+  published: boolean;
+  currency: string;
+  cover_image: string;
+};
+
 const useProducts = () => {
   const token = localStorage.getItem("token");
   const fetchProducts = async () => {

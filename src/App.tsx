@@ -17,16 +17,17 @@ import DefaultTab from "./components/pages/Products/CustomizeProduct/DefaultTab"
 import RedirectToHomepageIfAuthenticated from "./routes/RedirectToHomepageIfAuthenticated";
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import NotFound from "./components/pages/NotFound";
+import ProductDetail from "./components/pages/Products/Product";
 
 function App() {
   return (
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<RedirectToHomepageIfAuthenticated />} />{" "}
+          <Route path="/" element={<RedirectToHomepageIfAuthenticated />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
           <Route element={<ProtectedRoute />}>
-            {" "}
             <Route element={<SidebarLayout />}>
               <Route path="/homepage" element={<Homepage />} />{" "}
               <Route path="/products" element={<Products />}>

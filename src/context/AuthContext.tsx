@@ -93,7 +93,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
-      queryClient.setQueryData(["login"], data.user);
+      queryClient.setQueryData(["autoLogin"], data.user);
     },
   });
 

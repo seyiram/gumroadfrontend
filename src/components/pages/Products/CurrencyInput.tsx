@@ -70,6 +70,9 @@ export const CurrencyInput: React.FC = ({}) => {
     dropdownIndicator: (provided) => ({
       ...provided,
       color: "#000",
+      backgroundColor: "#fff",
+      display: "flex",
+      justifyContent: "flex-start"
     }),
   };
 
