@@ -5,10 +5,13 @@ import GumroadLogo from "../assets/images/gumroad_white.svg";
 import CloseIcon from "../assets/images/CloseIcon";
 import HamburgerIcon from "../assets/images/HamburgerIcon";
 import usePageTitle from "../hooks/usePageTitle";
+import { useAuth } from "../context/AuthContext";
 
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pageTitle = usePageTitle("Gumroad | Proto");
+
+  const { logout } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -129,9 +132,9 @@ const Sidebar = () => {
             >
               <span className="icon icon-gear-fill"></span> Settings
             </NavLink>
-            <a href="/user">
-              <span></span> User
-            </a>
+            <NavLink to={""} onClick={logout} role="button" tabIndex={0}>
+              <span>Logout</span>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -10,10 +10,9 @@ import { useAuth } from "../../../context/AuthContext";
 const ProductDetail = () => {
   const { data: productsData } = useProducts();
   const { currentUser } = useAuth();
-const [imageError, setImageError] = React.useState(false);
+  const [imageError, setImageError] = React.useState(false);
 
   const { id: productId } = useParams<{ id: string }>();
-
 
   const product = productsData?.find(
     (p: Product) => p.id.toString() === productId
@@ -27,7 +26,11 @@ const [imageError, setImageError] = React.useState(false);
 
   const options = [{ value: "new wishlist", label: "+ New Wishlist" }];
 
-  const styledName = (name: string) => {
+  const getDisplayName = (name: string, email: string) => {
+    return name || email.split("@")[0];
+  };
+
+  const styledLetter = (name: string) => {
     if (!name) return;
 
     const firstLetter = name.charAt(0).toUpperCase();
@@ -84,7 +87,6 @@ const [imageError, setImageError] = React.useState(false);
     }),
   };
 
-  console.log("CurrentUser.Name", currentUser?.name);
   return (
     <div className="pd-container">
       <div className="pd-detail">
@@ -92,7 +94,9 @@ const [imageError, setImageError] = React.useState(false);
           src={product.cover_image || Placeholder}
           alt=""
           className="pd-placeholder-img"
-          style={{ height: product.cover_image && !imageError ? "100%" : "21rem" }}
+          style={{
+            height: product.cover_image && !imageError ? "100%" : "21rem",
+          }}
           onError={() => setImageError(true)}
         />
         <div className="pd-info-wrapper">
@@ -105,9 +109,17 @@ const [imageError, setImageError] = React.useState(false);
                     <div className="pd-price">{`${product.currency}${product.price}`}</div>
                   </div>
                   <div className="pd-seller">
-                    {styledName(currentUser?.name || "")}
+                    {styledLetter(
+                      getDisplayName(
+                        currentUser?.name || "",
+                        currentUser?.email || ""
+                      )
+                    )}
                     <span className="username">
-                      {currentUser?.name || "N/A"}
+                      {getDisplayName(
+                        currentUser?.name || "",
+                        currentUser?.email || ""
+                      )}
                     </span>
                   </div>
                   <div className="pd-ratings">0 ratings</div>
