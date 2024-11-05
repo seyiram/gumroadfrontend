@@ -52,6 +52,18 @@ export const CurrencyInput: React.FC = ({}) => {
         borderColor: "#000",
       },
       borderRadius: "2rem",
+      maxWidth: "6rem",
+      display: "flex",
+      justifyContent: "center",
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      display: "flex",
+      justifyContent: "center",
+      // padding: "2px 8px",
+      alignItems: "center",
+      marginTop: "1rem",
+
     }),
     indicatorSeparator: () => ({}),
     singleValue: (provided) => ({
@@ -72,7 +84,7 @@ export const CurrencyInput: React.FC = ({}) => {
       color: "#000",
       backgroundColor: "#fff",
       display: "flex",
-      justifyContent: "flex-start"
+      justifyContent: "flex-start",
     }),
   };
 

@@ -1,11 +1,7 @@
 import "./assets/fonts/fonts.css";
 import "./App.css";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import Homepage from "./components/pages/Homepage/Homepage";
 import Products from "./components/pages/Products/Products";
@@ -32,6 +28,7 @@ function App() {
           <Route element={<RedirectToHomepageIfAuthenticated />}>
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/" element={<SignIn />} />
           </Route>
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route element={<ProtectedRoute />}>

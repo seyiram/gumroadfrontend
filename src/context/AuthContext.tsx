@@ -74,8 +74,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // useQuery for auto-login
   const autoLoginQuery = useQuery<User, Error>({
     queryKey: ["autoLogin"],
-    queryFn: () => fetchAutoLogin(localStorage.getItem("token") || ""),
+    queryFn: () => {
+      const token = localStorage.getItem("token");
+      if(!token) throw new Error("No token found");
+      return fetchAutoLogin(token);
+    },
     enabled: !!localStorage.getItem("token"),
+    retry: false,
   });
 
   // useMutation for login, signup, and logout
@@ -103,6 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
       queryClient.setQueryData(["autoLogin"], data.user);
+      queryClient.invalidateQueries({ queryKey: ["autoLogin"] });
     },
   });
 
