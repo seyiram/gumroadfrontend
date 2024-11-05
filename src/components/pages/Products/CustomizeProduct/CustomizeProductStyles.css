@@ -234,6 +234,7 @@
   flex-grow: 1;
   padding: 8px 0;
   font-size: 1rem;
+  color: grey;
 }
 
 .copy-url {

@@ -1,7 +1,12 @@
 import "./assets/fonts/fonts.css";
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import Homepage from "./components/pages/Homepage/Homepage";
 import Products from "./components/pages/Products/Products";
@@ -18,14 +23,17 @@ import RedirectToHomepageIfAuthenticated from "./routes/RedirectToHomepageIfAuth
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import NotFound from "./components/pages/NotFound";
 import ProductDetail from "./components/pages/Products/Product";
+import SignIn from "./components/auth/SignIn";
 
 function App() {
   return (
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<RedirectToHomepageIfAuthenticated />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route element={<RedirectToHomepageIfAuthenticated />}>
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+          </Route>
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<SidebarLayout />}>
@@ -46,6 +54,7 @@ function App() {
               </Route>
             </Route>
           </Route>
+          <Route path="/" element={<Navigate to="/homepage" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
