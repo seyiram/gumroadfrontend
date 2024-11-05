@@ -54,7 +54,7 @@ function App() {
               </Route>
             </Route>
           </Route>
-          <Route path="/" element={<Navigate to="/homepage" replace />} />
+          <Route path="/" element={<RedirectToHomepageIfAuthenticated />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

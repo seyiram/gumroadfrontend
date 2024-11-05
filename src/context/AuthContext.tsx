@@ -87,7 +87,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
-      queryClient.setQueryData(["autoLogin"], data.user);
+      // Add a small delay before navigation
+      setTimeout(() => {
+        queryClient.invalidateQueries({ queryKey: ["autoLogin"] });
+      }, 100);
     },
   });
 
