@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import Homepage from "./components/pages/Homepage/Homepage";
